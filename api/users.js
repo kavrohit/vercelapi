@@ -6,8 +6,16 @@ module.exports=(req,res)=>{
   }
   else if(req.method==="POST"){
     users.push(req.body);
-    // res.send({status:"user created",name,email});
     res.status(200).json(users);
   }
-
+  else if(req.method==='PUT'){
+    const {data,index} = req.body;
+    users[index] = data;
+    res.status(200).json(users);
+  }
+  else if(req.method==="DELETE"){
+    const {index} = req.body;
+    users = users.filter((p)=>(_,idx)=> idx !== index);
+    res.status(200).json(users);
+  }
 }
