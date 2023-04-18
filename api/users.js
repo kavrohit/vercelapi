@@ -1,13 +1,13 @@
+let users = [{name:'Rohit',email:"rohit@gmail.com"},{name:'Kashyap',email:"kashyap@gmail.com"}]
+
 module.exports=(req,res)=>{
   if(req.method==="GET"){
-    res.json([
-      {name:'Rohit',email:"kashyaprkav7@gmail.com"},
-      {name:'Kashyap',email:"kashyap69489@gmail.com"}
+   res.status(200).json(users);
+  }
+  else if(req.method==="POST"){
+    users.push(req.body);
+    // res.send({status:"user created",name,email});
+    res.status(200).json(users);
+  }
 
-    ])
-  }
-  else{
-    const {name,email} = req.body;
-    res.send({status:"user created",name,email});
-  }
 }
